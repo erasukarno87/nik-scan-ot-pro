@@ -1,5 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Settings } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { UserManagement } from "./admin/UserManagement";
+import { CategoryManagement } from "./admin/CategoryManagement";
 
 const AdminTab = () => {
   return (
@@ -14,13 +17,18 @@ const AdminTab = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-col items-center justify-center py-12 text-center">
-          <Settings className="h-16 w-16 text-muted-foreground mb-4" />
-          <h3 className="text-lg font-semibold mb-2">Tab Admin</h3>
-          <p className="text-muted-foreground">
-            Fitur admin untuk manajemen user dan flow approval
-          </p>
-        </div>
+        <Tabs defaultValue="users" className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="users">Kelola User</TabsTrigger>
+            <TabsTrigger value="categories">Kelola Kategori</TabsTrigger>
+          </TabsList>
+          <TabsContent value="users" className="mt-6">
+            <UserManagement />
+          </TabsContent>
+          <TabsContent value="categories" className="mt-6">
+            <CategoryManagement />
+          </TabsContent>
+        </Tabs>
       </CardContent>
     </Card>
   );
